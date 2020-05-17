@@ -1,1 +1,1 @@
-web: gunicorn MendyInsta.wsgi --log-file -
+web: gunicorn InstaMendy.wsgi --log-file -
