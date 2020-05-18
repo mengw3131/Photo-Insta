@@ -17,6 +17,9 @@
                             {% endif %}
                             {{ post.author.username }}
                         </a>
+                        <span class="poster__timestamp">
+                            {{ post.posted_on|timesince }}
+                        </span>
                     </div>
                 </div>
                 <a href="{% url 'post_detail' post.pk %}">
@@ -26,7 +29,7 @@
                 <div class="card__panel-body">
                     <div class='likes'>
                         {% if post.get_like_count %}
-                            {{ post.get_like_count}} like{% if post.get_like_count > 1 %}s{% endif %}
+                            {{ post.get_like_count }} like{% if post.get_like_count > 1 %}s{% endif %}
                         {% endif %}
                     </div>
                     <section class="input-row">
@@ -38,9 +41,7 @@
                 </div>
             </div>
         </div>
-
     {% endfor %}
-
-
 </div>
+
 {% endblock content %}

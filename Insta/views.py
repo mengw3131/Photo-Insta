@@ -34,6 +34,13 @@ class PostDetailView(DetailView):
             data['liked'] = 0
         return data
 
+class ExploreView(LoginRequiredMixin, ListView):
+    model = Post
+    template_name = 'explore.html'
+
+    def get_queryset(self):
+        return Post.objects.all().order_by('-posted_on')[:20]
+
 class UserDetailView(DetailView):
     model = InstaUser
     template_name = 'user_detail.html'

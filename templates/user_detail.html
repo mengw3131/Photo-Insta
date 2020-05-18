@@ -18,7 +18,9 @@
                 <div class="name-buttons">
                     <h1 class="username">{{ object.username }}</h1>
                     {% if user == object %}
+                    <a class="edit-desktop" href="{% url 'edit_profile' object.pk %}">
                         <button class="edit-profile">Edit Profile</button>
+                    </a>
                     {% else %}
                         {% is_following user object as following %}
                         <div class="follow-toggle__container">

@@ -28,11 +28,11 @@ class InstaUser(AbstractUser):
         followers = UserConnection.objects.filter(following=self)
         return followers.filter(creator=user).exists()
 
-    # def get_absolute_url(self):
-    #     return reverse('user_detail', args=[str(self.id)])
+    def get_absolute_url(self):
+        return reverse('user_detail', args=[str(self.id)])
 
-    # def __str__(self):
-    #     return self.username
+    def __str__(self):
+        return self.username
 
 class UserConnection(models.Model):
     created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -62,10 +62,10 @@ class Post(models.Model):
         blank=True,
         null=True
     )
-    # posted_on = models.DateTimeField(
-    #     auto_now_add=True,
-    #     editable=False,
-    # )
+    posted_on = models.DateTimeField(
+        auto_now_add=True,
+        editable=False,
+    )
 
     def get_like_count(self):
         return self.likes.count()
@@ -84,11 +84,10 @@ class Like(models.Model):
     post = models.ForeignKey(
         Post,
         on_delete=models.CASCADE,
-        related_name='likes')
+        related_name='likes',)
     user = models.ForeignKey(
         InstaUser,
-        on_delete=models.CASCADE,
-        related_name='likes'
+        on_delete=models.CASCADE
     )
 
     class Meta:
